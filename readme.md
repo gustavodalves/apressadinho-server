@@ -1,12 +1,13 @@
 # Appressadinho Server
 
 This project was implemented in TypeScript.
-Following the principles of clean code, solid and tdd.
+Following the principles of clean code, ddd, solid and tdd.
 
 ## Tools
   * TypeScript
   * Jest
   * Mongo
+  * Express
 
 ## Domain
 
