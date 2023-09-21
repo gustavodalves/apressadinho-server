@@ -14,6 +14,7 @@ export default class CreateAppUseController implements Controller<Input, { messa
     ) {}
 
     async handle(input: Input) {
+        console.log(input)
         try {
             await this.endUse.execute({
                 ...input,
