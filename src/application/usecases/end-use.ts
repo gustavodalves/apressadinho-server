@@ -8,6 +8,7 @@ export default class EndUseUseCase {
 
     async execute(input: Input) {
         console.log('START CREATE USE')
+        console.log(input)
         const appUse = AppUse.create(
             input.latitude, input.longitude, input.startDate, input.endDate
         );
