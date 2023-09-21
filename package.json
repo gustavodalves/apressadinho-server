@@ -5,8 +5,8 @@
   "license": "MIT",
   "scripts": {
     "test": "npx jest",
-    "dev": "tsx watch src/main/main.ts",
-    "build": "tsc"
+    "dev": "npx tsx watch src/main/main.ts",
+    "build": "npx tsc"
   },
   "devDependencies": {
     "@types/cors": "^2.8.14",
