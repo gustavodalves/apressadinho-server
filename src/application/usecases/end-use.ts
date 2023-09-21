@@ -7,11 +7,13 @@ export default class EndUseUseCase {
     ) {}
 
     async execute(input: Input) {
+        console.log('START CREATE USE')
         const appUse = AppUse.create(
             input.latitude, input.longitude, input.startDate, input.endDate
         );
 
         await this.appUseSaveRepository.save(appUse);
+        console.log('END CREATE USE')
     }
 }
 
