@@ -24,8 +24,8 @@ export default class GetAppUseController implements Controller<Input, { data: { 
                         appUse.id.getValue(),
                         appUse.interval.getStartDate(),
                         appUse.interval.getEndDate(),
-                        appUse.geoLocalization.getLatitude(),
-                        appUse.geoLocalization.getLongitude(),
+                        appUse.geoLocalization?.getLatitude(),
+                        appUse.geoLocalization?.getLongitude(),
                     ),
                     interval_in_ms: appUse.interval.getIntervalInMs()
                 }))

@@ -3,8 +3,8 @@ export default class GetUseAppOutputDTO {
         public id: string,
         public startDate: Date,
         public endDate: Date,
-        public longitude: number,
-        public latitude: number,
+        public longitude?: number,
+        public latitude?: number,
     ) {}
 
     toJSON() {
