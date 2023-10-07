@@ -11,7 +11,7 @@ export default class EndUseUseCase {
         try {
             console.log(input)
             const appUse = AppUse.create(
-                input.latitude, input.longitude, input.startDate, input.endDate
+                input
             );
     
             await this.appUseSaveRepository.save(appUse);

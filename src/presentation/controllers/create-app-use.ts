@@ -17,7 +17,8 @@ export default class CreateAppUseController implements Controller<Input, { messa
         console.log(input)
         try {
             await this.endUse.execute({
-                ...input,
+                longitude: input.longitude,
+                latitude: input.latitude,
                 endDate: input.end_date,
                 startDate: input.start_date
             });

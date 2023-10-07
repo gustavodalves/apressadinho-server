@@ -21,8 +21,13 @@ describe('View Uses Daily', () => {
         //given
         const amountAppUses = 7;
 
-        const createAppUses = Array.from({ length: amountAppUses - 1 }).map(() => AppUse.create(appUsesInput.longitude, appUsesInput.latitude, appUsesInput.startDate, appUsesInput.endDate));
-        const appUseDifferent = AppUse.create(30,20,'2023-09-15T09:23:00.000-03:00', '2023-09-15T09:23:10.000-03:00' );
+        const createAppUses = Array.from({ length: amountAppUses - 1 }).map(() => AppUse.create(appUsesInput));
+        const appUseDifferent = AppUse.create({
+            startDate: '2023-09-15T09:23:00.000-03:00',
+            endDate: '2023-09-15T09:23:10.000-03:00',
+            latitude: 30,
+            longitude: 12
+        });
 
         createAppUses.push(appUseDifferent);
 
