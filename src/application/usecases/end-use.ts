@@ -8,12 +8,16 @@ export default class EndUseUseCase {
 
     async execute(input: Input) {
         console.log('START CREATE USE')
-        console.log(input)
-        const appUse = AppUse.create(
-            input.latitude, input.longitude, input.startDate, input.endDate
-        );
-
-        await this.appUseSaveRepository.save(appUse);
+        try {
+            console.log(input)
+            const appUse = AppUse.create(
+                input.latitude, input.longitude, input.startDate, input.endDate
+            );
+    
+            await this.appUseSaveRepository.save(appUse);
+        } catch(err) {
+            console.log(err)
+        }
         console.log('END CREATE USE')
     }
 }
