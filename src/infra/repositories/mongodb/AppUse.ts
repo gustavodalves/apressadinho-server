@@ -7,8 +7,8 @@ export default class AppUseMongoRepository implements AppUseGetByIdRepository, A
     async save(appUse: AppUse): Promise<void> {
         await AppUseModel.create({
             _id: appUse.id.getValue(),
-            latitude: appUse.geoLocalization.getLatitude(),
-            longitude: appUse.geoLocalization.getLongitude(),
+            latitude: appUse.geoLocalization?.getLatitude(),
+            longitude: appUse.geoLocalization?.getLongitude(),
             endDate: appUse.interval.getEndDate(),
             startDate: appUse.interval.getStartDate()
         });
@@ -23,9 +23,15 @@ export default class AppUseMongoRepository implements AppUseGetByIdRepository, A
             longitude, latitude, _id: appUseId, startDate, endDate
         } = raw;
 
-        if(!latitude || !longitude || !appUseId|| !startDate || !endDate) throw new Error();
+        if(!appUseId|| !startDate || !endDate) throw new Error();
 
-        return AppUse.recover(appUseId, longitude, latitude, startDate.toISOString(), endDate.toISOString());
+        return AppUse.recover({
+            id: appUseId,
+            latitude: latitude,
+            longitude: longitude,
+            endDate: endDate.toISOString(),
+            startDate: startDate.toISOString(),
+        });
     }
 
     async getByDateInterval(startDate: Date, endDate: Date): Promise<AppUse[]> {
@@ -34,12 +40,12 @@ export default class AppUseMongoRepository implements AppUseGetByIdRepository, A
             endDate: { $gte: endDate }
         });
 
-        return raw.map(item => AppUse.recover(
-            item._id,
-            item.longitude!,
-            item.latitude!,
-            item.startDate!.toISOString(),
-            item.endDate!.toISOString()
-        ));
+        return raw.map(item => AppUse.recover({
+            id: item.id,
+            latitude: item.latitude,
+            longitude: item.longitude,
+            endDate: item.endDate!.toISOString(),
+            startDate: item.startDate!.toISOString(),
+        }))
     }
 }
